@@ -27,6 +27,7 @@ import com.liferay.apio.architect.language.AcceptLanguage;
 import com.liferay.apio.architect.related.RelatedModel;
 import com.liferay.apio.architect.representor.BaseRepresentor;
 import com.liferay.apio.architect.representor.NestedRepresentor;
+import com.liferay.apio.architect.representor.function.NestedListFieldFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -112,6 +113,11 @@ public abstract class BaseRepresentorImpl<T> implements BaseRepresentor<T> {
 	}
 
 	@Override
+	public List<NestedListFieldFunction<T, ?>> getNestedListFieldFunctions() {
+		return nestedListFieldFunctions;
+	}
+
+	@Override
 	public List<FieldFunction<T, Number>> getNumberFunctions() {
 		return Optional.ofNullable(
 			fieldFunctions.get("NUMBER")
@@ -176,10 +182,13 @@ public abstract class BaseRepresentorImpl<T> implements BaseRepresentor<T> {
 		return types;
 	}
 
+	public abstract boolean isNested();
+
 	protected BaseRepresentorImpl() {
 		binaryFunctions = new LinkedHashMap<>();
 		fieldFunctions = new LinkedHashMap<>();
 		nestedFieldFunctions = new ArrayList<>();
+		nestedListFieldFunctions = new ArrayList<>();
 		relatedModels = new ArrayList<>();
 		types = new ArrayList<>();
 	}
@@ -289,6 +298,29 @@ public abstract class BaseRepresentorImpl<T> implements BaseRepresentor<T> {
 	}
 
 	/**
+	 * Adds a nested list field to the {@code Representor}.
+	 *
+	 * @param  key the field's name
+	 * @param  transformFunction the function that transforms the model into the
+	 *         list whose models are used inside the nested representor
+	 * @param  function the function that creates the nested representor for each model
+	 * @review
+	 */
+	protected <S> void addNestedListField(
+		String key, Function<T, List<S>> transformFunction,
+		Function<NestedRepresentor.Builder<S>, NestedRepresentor<S>> function) {
+
+		NestedListFieldFunction<T, S> nestedFieldFunction = function.andThen(
+			nestedRepresentor -> new NestedListFieldFunction<>(
+				key, transformFunction, nestedRepresentor)
+		).apply(
+			new NestedRepresentorImpl.BuilderImpl<>()
+		);
+
+		nestedListFieldFunctions.add(nestedFieldFunction);
+	}
+
+	/**
 	 * Adds a number function to the {@code Representor}.
 	 *
 	 * @param  key the field's name
@@ -383,6 +415,8 @@ public abstract class BaseRepresentorImpl<T> implements BaseRepresentor<T> {
 	protected final Map<String, BinaryFunction<T>> binaryFunctions;
 	protected final Map<String, List<FieldFunction<T, ?>>> fieldFunctions;
 	protected final List<NestedFieldFunction<T, ?>> nestedFieldFunctions;
+	protected final List<NestedListFieldFunction<T, ?>>
+		nestedListFieldFunctions;
 	protected final List<RelatedModel<T, ?>> relatedModels;
 	protected final List<String> types;
 

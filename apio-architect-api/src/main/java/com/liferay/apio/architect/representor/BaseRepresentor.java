@@ -23,6 +23,7 @@ import com.liferay.apio.architect.file.BinaryFile;
 import com.liferay.apio.architect.identifier.Identifier;
 import com.liferay.apio.architect.language.AcceptLanguage;
 import com.liferay.apio.architect.related.RelatedModel;
+import com.liferay.apio.architect.representor.function.NestedListFieldFunction;
 
 import java.util.Date;
 import java.util.List;
@@ -108,6 +109,13 @@ public interface BaseRepresentor<T> {
 	 * @return the list of nested field functions.
 	 */
 	public List<NestedFieldFunction<T, ?>> getNestedFieldFunctions();
+
+	/**
+	 * Returns the list of nested list field functions.
+	 *
+	 * @return the list of nested list field functions.
+	 */
+	public List<NestedListFieldFunction<T, ?>> getNestedListFieldFunctions();
 
 	/**
 	 * Returns the list containing the number field names and the functions to
