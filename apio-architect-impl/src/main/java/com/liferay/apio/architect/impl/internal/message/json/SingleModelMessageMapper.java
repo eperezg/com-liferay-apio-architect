@@ -40,7 +40,6 @@ import java.util.List;
  * @author Jorge Ferrer
  * @param  <T> the model's type
  */
-@ConsumerType
 public interface SingleModelMessageMapper<T>
 	extends MessageMapper<SingleModel<T>> {
 

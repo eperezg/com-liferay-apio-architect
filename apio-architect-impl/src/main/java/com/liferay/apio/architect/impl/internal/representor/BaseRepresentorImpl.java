@@ -520,6 +520,18 @@ public abstract class BaseRepresentorImpl<T> implements BaseRepresentor<T> {
 			}
 
 			@Override
+			public <W> V addNestedList(
+				String key, Function<T, List<W>> transformFunction,
+				Function<NestedRepresentor.Builder<W>, NestedRepresentor<W>>
+					function) {
+
+				baseRepresentor.addNestedListField(
+					key, transformFunction, function);
+
+				return _this;
+			}
+
+			@Override
 			public V addNumber(String key, Function<T, Number> function) {
 				baseRepresentor.addNumberFunction(key, function);
 
