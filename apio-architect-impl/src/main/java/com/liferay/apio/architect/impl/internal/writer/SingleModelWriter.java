@@ -781,6 +781,10 @@ public class SingleModelWriter<T> {
 
 				List<?> list = function.apply(singleModel.getModel());
 
+				if (list == null) {
+					return;
+				}
+
 				FunctionalList<String> embeddedNestedPathElements =
 					new FunctionalList<>(
 						embeddedPathElements, nestedListFieldFunction.key);
