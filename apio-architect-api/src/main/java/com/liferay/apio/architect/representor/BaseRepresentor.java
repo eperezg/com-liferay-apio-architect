@@ -279,13 +279,14 @@ public interface BaseRepresentor<T> {
 				function);
 
 		/**
-		  * Adds a nested list field to the {@code Representor}.
-		  *
-		  * @param  key the field's name
-		  * @param  transformFunction the function that transforms the model into the
-		  *         list whose models are used inside the nested representor
-		  * @param  function the function that creates the nested representor for each model
-		  * @review
+		 * Adds a nested list field to the {@code Representor}.
+		 *
+		 * @param  key the field's name
+		 * @param  transformFunction the function that transforms the model into
+		 *         the list whose models are used inside the nested representor
+		 * @param  function the function that creates the nested representor for
+		 *         each model
+		 * @review
 		 */
 		public <V> U addNestedList(
 			String key, Function<T, List<V>> transformFunction,
