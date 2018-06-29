@@ -3,37 +3,66 @@
 	"binary2": "localhost/b/model/first/binary2",
 	"boolean1": true,
 	"boolean2": false,
-	"booleanList1": [true, true, false, false],
-	"booleanList2": [true, false, true, false],
+	"booleanList1": [
+		true,
+		true,
+		false,
+		false
+	],
+	"booleanList2": [
+		true,
+		false,
+		true,
+		false
+	],
 	"date1": "2016-06-15T09:00Z",
 	"date2": "2017-04-03T18:36Z",
 	"embedded1": {
 		"binary": "localhost/b/first-inner-model/first/binary",
 		"boolean": true,
-		"booleanList": [true, false],
+		"booleanList": [
+			true,
+			false
+		],
 		"embedded": {
-			"binary": "localhost/b/second-inner-model/first/binary",
-			"boolean": false,
-			"booleanList": [true],
-			"embedded": "localhost/p/third-inner-model/first",
-			"link": "community.liferay.com",
-			"linked": "localhost/p/third-inner-model/second",
-			"number": 2017,
-			"numberList": [1],
-			"relatedCollection": "localhost/p/second-inner-model/first/models",
+			"binary": "localhost/b/first-inner-model/first/binary",
+			"boolean": true,
+			"booleanList": [
+				true,
+				false
+			],
+			"embedded": "localhost/p/second-inner-model/first",
+			"link": "www.liferay.com",
+			"linked": "localhost/p/second-inner-model/second",
+			"localizedString": "Translated",
+			"number": 42,
+			"numberList": [
+				1,
+				2
+			],
+			"relatedCollection": "localhost/p/first-inner-model/first/models",
 			"self": "localhost/p/second-inner-model/first",
 			"string": "A string",
-			"stringList": ["a"]
+			"stringList": [
+				"a",
+				"b"
+			]
 		},
 		"link": "www.liferay.com",
 		"linked": "localhost/p/second-inner-model/second",
 		"localizedString": "Translated",
 		"number": 42,
-		"numberList": [1, 2],
+		"numberList": [
+			1,
+			2
+		],
 		"relatedCollection": "localhost/p/first-inner-model/first/models",
 		"self": "localhost/p/first-inner-model/first",
 		"string": "A string",
-		"stringList": ["a", "b"]
+		"stringList": [
+			"a",
+			"b"
+		]
 	},
 	"embedded2": "localhost/p/first-inner-model/second",
 	"link1": "www.liferay.com",
@@ -57,8 +86,20 @@
 	},
 	"number1": 2017,
 	"number2": 42,
-	"numberList1": [1, 2, 3, 4, 5],
-	"numberList2": [6, 7, 8, 9, 10],
+	"numberList1": [
+		1,
+		2,
+		3,
+		4,
+		5
+	],
+	"numberList2": [
+		6,
+		7,
+		8,
+		9,
+		10
+	],
 	"relatedCollection1": "localhost/p/model/first/models",
 	"relatedCollection2": "localhost/p/model/first/models",
 	"relativeURL1": "localhost/first",
@@ -66,6 +107,18 @@
 	"self": "localhost/p/model/first",
 	"string1": "Live long and prosper",
 	"string2": "Hypermedia",
-	"stringList1": ["a", "b", "c", "d", "e"],
-	"stringList2": ["f", "g", "h", "i", "j"]
+	"stringList1": [
+		"a",
+		"b",
+		"c",
+		"d",
+		"e"
+	],
+	"stringList2": [
+		"f",
+		"g",
+		"h",
+		"i",
+		"j"
+	]
 }
