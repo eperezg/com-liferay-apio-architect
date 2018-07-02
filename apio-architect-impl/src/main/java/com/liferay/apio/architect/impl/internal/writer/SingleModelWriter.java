@@ -686,10 +686,8 @@ public class SingleModelWriter<T> {
 			Stream::empty
 		).forEach(
 			nestedListFieldFunction -> {
-				Function<S, ? extends List<?>> function =
-					nestedListFieldFunction.function;
-
-				List<?> list = function.apply(singleModel.getModel());
+				List<?> list = nestedListFieldFunction.apply(
+					singleModel.getModel());
 
 				if (list == null) {
 					return;
@@ -697,13 +695,13 @@ public class SingleModelWriter<T> {
 
 				FunctionalList<String> embeddedNestedPathElements =
 					new FunctionalList<>(
-						embeddedPathElements, nestedListFieldFunction.key);
+						embeddedPathElements, nestedListFieldFunction.getKey());
 
 				_writeNestedList(
-					nestedListFieldFunction.key, list, jsonObjectBuilder,
+					nestedListFieldFunction.getKey(), list, jsonObjectBuilder,
 					embeddedNestedPathElements,
 					__ -> Optional.of(
-						nestedListFieldFunction.nestedRepresentor));
+						nestedListFieldFunction.getNestedRepresentor()));
 			}
 		);
 	}

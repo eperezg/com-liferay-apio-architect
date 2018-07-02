@@ -19,6 +19,7 @@ import static com.liferay.apio.architect.impl.internal.date.DateTransformer.asSt
 import com.liferay.apio.architect.alias.BinaryFunction;
 import com.liferay.apio.architect.alias.representor.FieldFunction;
 import com.liferay.apio.architect.alias.representor.NestedFieldFunction;
+import com.liferay.apio.architect.alias.representor.NestedListFieldFunction;
 import com.liferay.apio.architect.file.BinaryFile;
 import com.liferay.apio.architect.identifier.Identifier;
 import com.liferay.apio.architect.impl.internal.related.RelatedModelImpl;
@@ -27,7 +28,6 @@ import com.liferay.apio.architect.language.AcceptLanguage;
 import com.liferay.apio.architect.related.RelatedModel;
 import com.liferay.apio.architect.representor.BaseRepresentor;
 import com.liferay.apio.architect.representor.NestedRepresentor;
-import com.liferay.apio.architect.representor.function.NestedListFieldFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -312,8 +312,24 @@ public abstract class BaseRepresentorImpl<T> implements BaseRepresentor<T> {
 		Function<NestedRepresentor.Builder<S>, NestedRepresentor<S>> function) {
 
 		NestedListFieldFunction<T, S> nestedFieldFunction = function.andThen(
-			nestedRepresentor -> new NestedListFieldFunction<>(
-				key, transformFunction, nestedRepresentor)
+			nestedRepresentor -> new NestedListFieldFunction<T, S>() {
+
+				@Override
+				public List<S> apply(T t) {
+					return transformFunction.apply(t);
+				}
+
+				@Override
+				public String getKey() {
+					return key;
+				}
+
+				@Override
+				public NestedRepresentor<S> getNestedRepresentor() {
+					return nestedRepresentor;
+				}
+
+			}
 		).apply(
 			new NestedRepresentorImpl.BuilderImpl<>()
 		);

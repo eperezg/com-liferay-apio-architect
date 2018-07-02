@@ -19,11 +19,11 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.apio.architect.alias.BinaryFunction;
 import com.liferay.apio.architect.alias.representor.FieldFunction;
 import com.liferay.apio.architect.alias.representor.NestedFieldFunction;
+import com.liferay.apio.architect.alias.representor.NestedListFieldFunction;
 import com.liferay.apio.architect.file.BinaryFile;
 import com.liferay.apio.architect.identifier.Identifier;
 import com.liferay.apio.architect.language.AcceptLanguage;
 import com.liferay.apio.architect.related.RelatedModel;
-import com.liferay.apio.architect.representor.function.NestedListFieldFunction;
 
 import java.util.Date;
 import java.util.List;
