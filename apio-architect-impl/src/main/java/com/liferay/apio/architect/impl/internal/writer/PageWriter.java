@@ -435,49 +435,7 @@ public class PageWriter<T> {
 			_jsonObjectBuilder, itemJsonObjectBuilder, singleModel,
 			_requestInfo.getHttpHeaders());
 
-		fieldsWriter.writeBooleanFields(
-			(field, value) -> _pageMessageMapper.mapItemBooleanField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeBooleanListFields(
-			(field, value) -> _pageMessageMapper.mapItemBooleanListField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeLocalizedStringFields(
-			(field, value) -> _pageMessageMapper.mapItemStringField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeNumberFields(
-			(field, value) -> _pageMessageMapper.mapItemNumberField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeNumberListFields(
-			(field, value) -> _pageMessageMapper.mapItemNumberListField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeRelativeURLFields(
-			(field, value) -> _pageMessageMapper.mapItemStringField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeStringFields(
-			(field, value) -> _pageMessageMapper.mapItemStringField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeStringListFields(
-			(field, value) -> _pageMessageMapper.mapItemStringListField(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
-
-		fieldsWriter.writeLinks(
-			(fieldName, link) -> _pageMessageMapper.mapItemLink(
-				_jsonObjectBuilder, itemJsonObjectBuilder, fieldName, link));
-
-		fieldsWriter.writeTypes(
-			types -> _pageMessageMapper.mapItemTypes(
-				_jsonObjectBuilder, itemJsonObjectBuilder, types));
-
-		fieldsWriter.writeBinaries(
-			(field, value) -> _pageMessageMapper.mapItemLink(
-				_jsonObjectBuilder, itemJsonObjectBuilder, field, value));
+		_writeBasicFields(fieldsWriter, itemJsonObjectBuilder);
 
 		fieldsWriter.writeSingleURL(
 			url -> _pageMessageMapper.mapItemSelfURL(
